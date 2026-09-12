@@ -1,11 +1,11 @@
 const carouselImages = [
-  "assets/images/example-carousel-1.webp",
-  "assets/images/example-carousel-2.webp",
-  "assets/images/example-carousel-3.webp",
-  "assets/images/example-carousel-4.webp",
-  "assets/images/example-carousel-5.webp",
-  "assets/images/example-carousel-6.webp",
-  "assets/images/example-carousel-7.webp"
+  "images/example-carousel-1.png",
+  "images/example-carousel-2.png",
+  "images/example-carousel-3.png",
+  "images/example-carousel-4.png",
+  "images/example-carousel-5.png",
+  "images/example-carousel-6.png",
+  "images/example-carousel-7.png"
 ];
 
 const fmt = (date) => date.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
@@ -18,34 +18,6 @@ document.querySelectorAll("[data-tomorrow]").forEach((el) => { el.textContent = 
 document.querySelectorAll(".scroll-pricing").forEach((btn) => {
   btn.addEventListener("click", () => document.querySelector("#pricing").scrollIntoView({ behavior: "smooth" }));
 });
-
-const video = document.querySelector("#heroVideo");
-const videoButton = document.querySelector(".video-play");
-function loadHeroVideo() {
-  if (video.dataset.loaded === "true") return;
-  const source = document.createElement("source");
-  source.src = video.dataset.src;
-  source.type = "video/mp4";
-  video.appendChild(source);
-  video.load();
-  video.dataset.loaded = "true";
-}
-videoButton.addEventListener("click", () => {
-  loadHeroVideo();
-  video.play();
-  videoButton.classList.add("hidden");
-});
-video.addEventListener("click", () => {
-  if (video.paused) {
-    loadHeroVideo();
-    video.play();
-    videoButton.classList.add("hidden");
-  } else {
-    video.pause();
-    videoButton.classList.remove("hidden");
-  }
-});
-video.addEventListener("ended", () => videoButton.classList.remove("hidden"));
 
 const imageEl = document.querySelector("#carouselImage");
 const dotsEl = document.querySelector("[data-dots]");
@@ -74,7 +46,9 @@ function showSlide(index, manual = false) {
 }
 function restartCarousel() {
   clearInterval(carouselTimer);
-  carouselTimer = setInterval(() => showSlide(carouselIndex + 1), 4000);
+  if (carouselImages.length > 1) {
+    carouselTimer = setInterval(() => showSlide(carouselIndex + 1), 4000);
+  }
 }
 document.querySelector(".car-arrow.prev").addEventListener("click", () => showSlide(carouselIndex - 1, true));
 document.querySelector(".car-arrow.next").addEventListener("click", () => showSlide(carouselIndex + 1, true));

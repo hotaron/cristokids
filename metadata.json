@@ -1,0 +1,8 @@
+{
+  "name": "+250 Dinâmicas Cristãs para Crianças",
+  "description": "Material exclusivo para o ministério infantil com mais de 250 dinâmicas bíblicas, jogos e recursos práticos para aulas e encontros com crianças.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

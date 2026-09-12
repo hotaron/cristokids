@@ -1,0 +1,14 @@
+{
+  "name": "cristokids",
+  "version": "1.0.0",
+  "description": "+250 Dinâmicas Cristãs para Crianças",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build complete')\""
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
