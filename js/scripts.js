@@ -1,11 +1,11 @@
 const carouselImages = [
-  "images/example-carousel-1.png",
-  "images/example-carousel-2.png",
-  "images/example-carousel-3.png",
-  "images/example-carousel-4.png",
-  "images/example-carousel-5.png",
-  "images/example-carousel-6.png",
-  "images/example-carousel-7.png"
+  { src: "images/example-carousel-1.webp", srcset: "images/example-carousel-1-mobile.webp 500w, images/example-carousel-1.webp 860w" },
+  { src: "images/example-carousel-2.webp", srcset: "images/example-carousel-2-mobile.webp 500w, images/example-carousel-2.webp 860w" },
+  { src: "images/example-carousel-3.webp", srcset: "images/example-carousel-3-mobile.webp 500w, images/example-carousel-3.webp 860w" },
+  { src: "images/example-carousel-4.webp", srcset: "images/example-carousel-4-mobile.webp 500w, images/example-carousel-4.webp 860w" },
+  { src: "images/example-carousel-5.webp", srcset: "images/example-carousel-5-mobile.webp 500w, images/example-carousel-5.webp 860w" },
+  { src: "images/example-carousel-6.webp", srcset: "images/example-carousel-6-mobile.webp 500w, images/example-carousel-6.webp 860w" },
+  { src: "images/example-carousel-7.webp", srcset: "images/example-carousel-7-mobile.webp 500w, images/example-carousel-7.webp 860w" }
 ];
 
 const fmt = (date) => date.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
@@ -38,7 +38,9 @@ function showSlide(index, manual = false) {
   carouselIndex = (index + carouselImages.length) % carouselImages.length;
   imageEl.classList.add("switching");
   setTimeout(() => {
-    imageEl.src = carouselImages[carouselIndex];
+    const item = carouselImages[carouselIndex];
+    imageEl.src = item.src;
+    imageEl.srcset = item.srcset;
     imageEl.classList.remove("switching");
     renderDots();
   }, 140);
@@ -58,7 +60,7 @@ restartCarousel();
 const lightbox = document.querySelector("#lightbox");
 const lightboxImg = lightbox.querySelector("img");
 imageEl.addEventListener("click", () => {
-  lightboxImg.src = imageEl.src;
+  lightboxImg.src = carouselImages[carouselIndex].src;
   lightbox.classList.add("open");
   lightbox.setAttribute("aria-hidden", "false");
 });
